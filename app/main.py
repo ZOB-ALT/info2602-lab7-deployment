@@ -32,11 +32,5 @@ async def unauthorized_redirect_handler(request: Request, exc: Exception):
         name="401.html",
     )
 
-@app.get("/init-db")
-def init_database():
-    from app.database import create_db_and_tables
-    create_db_and_tables()
-    return {"message": "Database initialized successfully!"}
-
 if __name__ == "__main__":
     uvicorn.run("app.main:app", host=get_settings().app_host, port=get_settings().app_port, reload=get_settings().env.lower()!="production")
